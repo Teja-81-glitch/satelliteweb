@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Satellite Interference Detection — Project</title>
+  <style>
+    :root{
+      --bg:#1e3b6a;--card:#23093a;--muted:#9aa4b2;--accent:#4f46e5;--glass:rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+    body{background:linear-gradient(180deg,#071023 0%, #081229 60%);color:#e6eef8;line-height:1.6}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header.site-header{padding:18px 0;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-weight:700;font-size:20px;color:var(--accent)}
+    nav.site-nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    nav.site-nav a:hover{color:#fff}
+
+    /* HERO */
+    .hero{display:flex;gap:28px;align-items:center;margin-top:18px}
+    .hero .left{flex:1}
+    .hero h1{font-size:30px;margin:0 0 12px;color:#fff}
+    .hero p{margin:0 0 18px;color:var(--muted)}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#7c3aed);border:none;padding:12px 18px;border-radius:10px;color:#fff;font-weight:700;cursor:pointer}
+
+    .hero .right{width:420px}
+    .card-surface{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+
+    /* SECTIONS */
+    section.project-section{margin-top:26px}
+    h2.section-title{color:#cfe3ff;margin:0 0 12px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .feature-list li{margin:10px 0;color:var(--muted)}
+
+    /* RESULTS area */
+    .results-grid{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+    .plot-placeholder{height:260px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;color:var(--muted);border:1px dashed rgba(255,255,255,0.04)}
+
+
+    /* responsive */
+    @media (max-width:880px){
+      .grid,.results-grid{grid-template-columns:1fr}
+      .hero{flex-direction:column}
+      .hero .right{width:100%}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .kbd{background:#240356;padding:6px 8px;border-radius:6px;border:1px solid rgba(255,255,255,0.02);font-weight:600}
+    .download-btn{display:inline-block;margin-top:12px;padding:10px 14px;background:transparent;border:1px solid rgba(255,255,255,0.06);border-radius:8px;color:var(--muted);text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <div class="brand">Satellite Interference Detection</div>
+      <nav class="site-nav">
+        <a href="#abstract">Abstract</a>
+        <a href="#problem">Problem</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#results">Results</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="left">
+        <h1>Machine Learning-based Narrowband Jamming Detection<br><span style="font-size:16px;color:var(--muted);">(BPSK signal simulation + Random Forest)</span></h1>
+        <p class="muted">This project simulates BPSK satellite signals, injects narrowband interference and uses simple statistical features with a Random Forest classifier to detect jamming. The approach is lightweight and suitable for ground-station monitoring.</p>
+        <div>
+          <button class="btn-primary" onclick="document.getElementById('methodology').scrollIntoView({behavior:'smooth'})">View Methodology</button>
+          <a class="download-btn" href="#results" style="margin-left:10px">View Results</a>
+        </div>
+      </div>
+
+      <div class="right card-surface">
+        <strong class="muted">Project at a glance</strong>
+        <ul style="padding-left:18px;margin-top:10px;list-style:disc" class="feature-list">
+          <li>BPSK signal generation</li>
+          <li>Narrowband cosine jamming</li>
+          <li>Features: mean, std, variance</li>
+          <li>Random Forest (100 trees)</li>
+          <li>Accuracy: ~98–100%</li>
+        </ul>
+        <a class="download-btn" href="#code">Download Code</a>
+      </div>
+    </div>
+
+    <!-- ABSTRACT -->
+    <section id="abstract" class="project-section">
+      <h2 class="section-title">Abstract</h2>
+      <p class="muted">Satellite communication is crucial for many modern applications but is vulnerable to intentional interference such as narrowband jamming. This project proposes an automated detection pipeline using simulated BPSK signals and a Random Forest classifier trained on simple time-domain statistical features. The system achieves very high detection accuracy and can be extended to other modulations and real signal captures.</p>
+    </section>
+
+    <!-- PROBLEM -->
+    <section id="problem" class="project-section">
+      <h2 class="section-title" >Problem Statement</h2>
+     
+      <div class="grid">
+        <div>
+          <p class="muted">Satellite links are susceptible to interference from both accidental sources and intentional jamming. Narrowband jamming, although occupying a small portion of the spectrum, can severely degrade demodulation for BPSK signals. Detecting such interference quickly allows ground stations to take mitigation steps.</p>
+        </div>
+        <div>
+          <div class="card-surface">
+            <strong>Applications</strong>
+            <ul style="margin-top:8px;padding-left:18px;list-style:disc;color:var(--muted)">
+              <li>Ground-station monitoring</li>
+              <li>Defense & security</li>
+              <li>Satellite link health diagnostics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHODOLOGY -->
+  <!-- METHODOLOGY -->
+<section id="methodology" class="project-section">
+  <h2 class="section-title" style="text-align:center;">Methodology</h2>
+  <div style="max-width:800px;margin:0 auto;text-align:left;">
+    
+    <h3 style="color:#cfe3ff;margin-top:16px;">Signal Generation</h3>
+    <p class="muted">
+      Generate BPSK baseband signals by mapping random bits to ±1 and sampling at a moderate rate. Create both clean signals and jammed variants by adding narrowband cosine interferers with controllable amplitude and frequency. This simulates realistic jamming scenarios.
+    </p>
+
+    <h3 style="color:#cfe3ff;margin-top:16px;">Feature Extraction</h3>
+    <p class="muted">
+      Extract simple time-domain features from each signal: mean, standard deviation, and variance. These features are sufficient to separate clean and interfered signals in this controlled simulation. Optionally, spectral features like power spectral density or higher-order statistics can be included for improved robustness.
+    </p>
+
+    <h3 style="color:#cfe3ff;margin-top:16px;">Dataset Preparation</h3>
+    <p class="muted">
+      Build a dataset consisting of labeled clean (0) and jammed (1) signals. In this example, 200 total signals (100 clean + 100 jammed) are generated. Split into 70% training and 30% testing sets. Standardize features to improve classifier performance.
+    </p>
+
+    <h3 style="color:#cfe3ff;margin-top:16px;">Machine Learning</h3>
+    <p class="muted">
+      Train a Random Forest classifier (100 trees) on the extracted features. Evaluate performance using accuracy and confusion matrix. This approach demonstrates a simple yet effective ML pipeline for interference detection. Future enhancements can include deep learning models using spectrogram images or real satellite signal captures.
+    </p>
+
+    <div class="card-surface" style="margin-top:20px;">
+      <strong>Key Points</strong>
+      <ul style="padding-left:18px;color:var(--muted);">
+        <li>Simulate realistic BPSK signal scenarios.</li>
+        <li>Inject narrowband jamming for testing classifier robustness.</li>
+        <li>Extract simple yet effective statistical features.</li>
+        <li>Train/test Random Forest classifier for binary classification.</li>
+        <li>Visualize results using feature histograms and confusion matrix.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+    <!-- RESULTS -->
+<section id="results" class="project-section">
+  <h2 class="section-title">Results</h2>
+  <div class="results-grid">
+    <div>
+      <!-- BPSK Signal -->
+<div class="card-surface" style="margin-bottom:18px">
+  <h3 style="margin:8px 0;color:#cfe3ff">BPSK Signal</h3>
+  <img src="bpsk.png" alt="BPSK Signal" style="width:100%; border-radius:8px;">
+  <div class="muted" style="margin-top:6px">Clean and interfered BPSK signals</div>
+</div>
+
+<!-- Feature Distributions -->
+<div class="card-surface" style="margin-bottom:18px">
+  <h3 style="margin:8px 0;color:#cfe3ff">Feature Distributions</h3>
+  <img src="features.png" alt="Feature Distributions" style="width:100%; border-radius:8px;">
+  <div class="muted" style="margin-top:6px">Mean, Standard Deviation, and Variance histograms</div>
+</div>
+
+<!-- Confusion Matrix -->
+<div class="card-surface">
+  <h3 style="margin:8px 0;color:#cfe3ff">Confusion Matrix</h3>
+  <img src="confusionmatrix.png" alt="Confusion Matrix" style="width:100%; border-radius:8px;">
+  <div class="muted" style="margin-top:6px">Random Forest classification results</div>
+</div>
+
+    <div>
+      <div class="card-surface">
+        <strong>Performance</strong>
+        <p class="muted" style="margin:8px 0">The Random Forest classifier demonstrates ~98–100% accuracy on the simulated dataset. Below are the plots:</p>
+        <ul style="padding-left:18px;color:var(--muted)">
+          <li>Raw time-domain samples (clean vs jammed)</li>
+          <li>Feature histograms (mean/std/variance) split by class</li>
+          <li>Confusion matrix</li>
+        </ul>
+        <a class="download-btn" href="#code">Download full report (PDF)</a>
+      </div>
+
+      <div style="margin-top:18px" class="card-surface">
+        <strong>Next steps</strong>
+        <ul style="padding-left:18px;color:var(--muted)">
+          <li>Test using SDR-captured real signals</li>
+          <li>Expand features (spectral, kurtosis, entropy)</li>
+          <li>Use CNNs on spectrograms for robust detection</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- CONTACT -->
+    <section id="contact" class="project-section">
+      <h2 class="section-title">Contact</h2>
+      <p class="muted">Project author: <strong>Tejaswi</strong></p>
+      <p class="muted">Email: <a href="mailto:steju1048@gmail.com">steju1048@gmail.com</a></p>
+      <p class="muted">College: SVCE</p>
+    </section>
+
+    <footer>
+      © 2025 Satellite Communication Interference Detection — Your Name
+    </footer>
+  </div>
+
+  <script>
+    // Small UI helpers
+    document.querySelectorAll('nav.site-nav a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        document.getElementById(id).scrollIntoView({behavior:'smooth'});
+      })
+    });
+  </script>
+</body>
+</html> 
